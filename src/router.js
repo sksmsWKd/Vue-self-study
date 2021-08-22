@@ -6,16 +6,26 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [
-    {
+  routes: [{
       path: '/',
       name: 'home',
-      component: () => import(/* webpackChunkName: "about" */ './views/Home.vue')
+      component: () => import('./views/Home.vue')
     },
     {
       path: '/users',
       name: 'users',
-      component: () => import(/* webpackChunkName: "users" */ './views/Users.vue')
+      component: () => import('./views/Users.vue')
+    },
+
+    {
+      path: '/posts',
+      name: 'posts',
+      component: () => import('./views/Posts.vue')
+    },
+    {
+      path: '/create',
+      name: 'postcreate',
+      component: () => import('./views/PostCreate.vue')
     }
   ]
 })
