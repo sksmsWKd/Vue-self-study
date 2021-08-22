@@ -1,70 +1,83 @@
 <template>
-  <div id="app">
-    <Header></Header>
-    <div id="content" class="content">
-      <router-view></router-view>
-    </div>
-    Parent counter : {{ parentCounter }}<br />
+  <v-app id="inspire">
+    <v-navigation-drawer right v-model="drawer" fixed app>
+      <v-img
+        src="https://mcdn.wallpapersafari.com/medium/41/99/KLR9cA.jpg"
+        height="100%"
+      >
+        <v-list dense>
+          <v-list-tile router :to="{ name: 'home' }" exact>
+            <v-list-tile-action>
+              <v-icon>home</v-icon>
+            </v-list-tile-action>
 
-    <!-- Child 컴포넌트를 등록하고 counter 데이터 속성을 props로 전달한다. -->
-    <child></child>
+            <v-list-tile-content>
+              <v-list-tile-title>Home</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
 
-    <br />
-    <br />
+          <v-list-tile router :to="{ name: 'users' }" exact>
+            <v-list-tile-action>
+              <v-icon>person</v-icon>
+            </v-list-tile-action>
 
-    <div id="app">
-      <button @click="$store.commit('increment')">증가</button>
-      <button @click="$store.commit('decrement')">감소</button>
-      <button @click="$store.commit('doubleadd', 5)">버튼</button>
-      {{ count }}
+            <v-list-tile-content>
+              <v-list-tile-title>Users</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
 
-      <h1>{{ $store.getters.counting }}</h1>
-    </div>
-  </div>
+          <v-list-tile router :to="{ name: 'posts' }" exact>
+            <v-list-tile-action>
+              <v-icon>view_list</v-icon>
+            </v-list-tile-action>
+
+            <v-list-tile-content>
+              <v-list-tile-title>Posts</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+
+          <v-list-tile router :to="{ name: 'postcreate' }" exact>
+            <v-list-tile-action>
+              <v-icon>chat</v-icon>
+            </v-list-tile-action>
+
+            <v-list-tile-content>
+              <v-list-tile-title>Create</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+      </v-img>
+    </v-navigation-drawer>
+
+    <v-toolbar dark fixed app color="cyan lighten-5">
+     
+        <v-toolbar-side-icon
+          @click.stop="drawer = !drawer"
+        ></v-toolbar-side-icon>
+
+        <v-toolbar-title>HI</v-toolbar-title>
+      </v-img>
+    </v-toolbar>
+
+    <v-content>
+      <router-view />
+      <!--      <router-view /> 가 중요함 컴포넌트 만듬
+                웹 사이트에서 url 경로에 따라 컴포넌트 보여줌. -->
+    </v-content>
+    <!-- <v-footer color="cyan lighten-5" fixed app>
+      <span class="white--text"> ㅎ_ㅇ</span>
+    </v-footer> -->
+
+  </v-app>
 </template>
 
 <script>
-import Header from "./components/layout/Header.vue";
-
-// App.vue(Parent)
-import Child from "./Child.vue";
-
 export default {
-  name: "App",
-  components: {
-    // Child 컴포넌트를 하위 컴포넌트로 등록
-    child: Child,
-    Header,
-  },
-  // data() {
-  //   return {
-  //     counter: 0,
-  //   };
-  // },
-  methods: {
-    // 이벤트 추가
-    addCounter() {
-      this.$store.commit("addCounter");
-    },
-    subCounter() {
-      this.$store.state.counter--;
-    },
-  },
-  computed: {
-    count() {
-      return this.$store.state.count;
-    },
+  data: () => ({
+    drawer: null,
+  }),
+  props: {
+    source: String,
   },
 };
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
