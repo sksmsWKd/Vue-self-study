@@ -1,96 +1,58 @@
 <template>
-  <div>
-    <h1>
-      <h1>h {{ title }}</h1>
-      <input type="text" v-model="input" />
-      <button type="button" @click="getData">get</button>
-      <button type="button" @click="setData">set</button>
+  <v-container>
+    <h1>Home</h1>
 
-      <select class="form-control" v-model="region" @change="change">
-        <option
-          :key="index"
-          :value="option.v"
-          v-for="(option, index) in options"
-        >
-          <!-- 데이터 하나씩 돌아가며, key 넣기 필수 , 유일한 키값 -->
-          {{ option.v }} : {{ option.t }}
-        </option>
-      </select>
+    <h2><a href="/users">Go All users</a></h2>
+    <h2>전체 유저 수 :{{ $store.getters.allUsersCount }}</h2>
 
-      <table class="table table-bordered" v-show="tableshow">
-        <tr :key="index" v-for="(data, index) in options">
-          <td>{{ data.v }}</td>
-          <td>{{ data.t }}</td>
-        </tr>
-      </table>
-    </h1>
-  </div>
+    <h3>
+      <!-- <br />...mapGetters 사용자지정<br /> -->
+      서울 수 : {{ seouls }} <br />
+      서울% : {{ percent }}%
+    </h3>
+
+    <v-container fluid :grid-list-md="!$vuetify.breakpoint.xs">
+      <v-layout wrap row>
+        <v-flex xs12 sm6 class="pb-2" width="50%">
+          <v-card height="290px" :color="`#C1F0F6	`">
+            50%
+            <h1>1</h1>
+          </v-card>
+        </v-flex>
+        <v-flex xs12 sm6 class="pb-2" width="50%">
+          <v-card height="290px" :color="`#C1F0F6	`">
+            50%
+            <h1>2</h1>
+          </v-card>
+        </v-flex>
+
+        <v-flex xs12 sm4 class="pb-2" v-for="i in 3">
+          <v-card height="140px" :color="`#292929	`"> 33% </v-card>
+        </v-flex>
+
+        <v-flex xs12 sm6 md3 class="pb-2" v-for="i in 4">
+          <v-card height="180px" :color="`#AF4035`"> 25% </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </v-container>
 </template>
 
 <script>
+import { mapState, mapGetters } from "vuex";
+
 export default {
-  name: "Home",
   data() {
-    return {
-      tableshow: true,
-      title: "제목자리",
-      input: "abc",
-      region: "3",
-      options: [
-        { v: "1", t: "aa" },
-        { v: "2", t: "bb" },
-        { v: "3", t: "cc" },
-        { v: "4", t: "dd" },
-      ],
-    };
+    return {};
   },
-  watch: {
-    // 정의한 데이터를. 메서드형식으로 만듬
-
-    input() {
-      //input 데이터가 변경이 일어나면,
-      //데이터 변경을 체크
-      console.log(this.input + "으로 변경");
-      // alert("변경금지!!");
-      // this.input = "abc";
-    },
-  },
-  methods: {
-    change() {
-      alert(this.region);
-    },
-    getData() {
-      alert(this.input);
-      //메소드안에서 데이터 접근시 this
-    },
-
-    setData() {
-      this.input = "12345";
-    },
-  },
-  beforeCreate() {
-    console.log("beforeCreate");
-  },
-  created() {
-    console.log("created");
-  },
-  beforeMount() {
-    console.log("beforeMount");
-  },
-  mounted() {
-    console.log("mounted");
-  },
-  beforeUpdate() {
-    console.log("beforeUpdate");
-  },
-  updated() {
-    console.log("updated");
-  },
-  beforeDestroy() {
-    console.log("beforeDestroy");
-  },
-  destroyed() {
-    console.log("destroyed");
+  methods: {},
+  computed: {
+    ...mapState(["allUsers"]),
+    ...mapGetters({
+      count: "allUsersCount",
+      seouls: "countOfSeoul",
+      percent: "percentOfSeoul",
+    }),
   },
 };
 </script>
