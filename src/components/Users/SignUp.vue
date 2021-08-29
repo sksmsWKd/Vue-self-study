@@ -12,6 +12,17 @@
     <v-text-field label="주소" v-model="address"></v-text-field>
     <v-text-field label="이미지" v-model="src"></v-text-field>
     <v-btn @click="signUp">회원가입</v-btn>
+
+    <v-text-field label="글자의 색을 입력해 주세요" v-model="color">
+    </v-text-field>
+    <v-text-field label="글자의 사이즈를 입력해 주세요" v-model="fontSize">
+    </v-text-field>
+
+    <div>
+      <div :style="{ color: color, 'font-size': fontSize + 'px' }">
+        <p>style test</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -28,11 +39,14 @@ export default {
       name: null,
       address: null,
       src: null,
+      color: "",
+      fontSize: 13,
     };
   },
   methods: {
     // ...mapMutations(["addUsers"]),
     ...mapActions(["addUser"]),
+
     signUp() {
       let userObj = {
         userId: this.userId,
