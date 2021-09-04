@@ -16,7 +16,6 @@ export default new Router({
       name: 'users',
       component: () => import('./views/Users.vue')
     },
-
     {
       path: '/posts',
       name: 'posts',
@@ -26,6 +25,11 @@ export default new Router({
       path: '/create',
       name: 'postcreate',
       component: () => import('./views/PostCreate.vue')
+    },
+    {
+      path: '/shopping',
+      name: 'shopping',
+      component: () => import('./views/Shopping.vue')
     }
   ]
 })
