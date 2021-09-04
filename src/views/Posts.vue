@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1>Posts</h1>
+    <h1>Kopf hoch</h1>
 
     <v-flex xs6>
       <Postlist></Postlist>
