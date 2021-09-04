@@ -28,28 +28,6 @@ export default new Vuex.Store({
       }
     ],
     posts: [{
-      //   index: 1,
-      //   title: 'Test1',
-      //   content: 'Test1 Content',
-      //   src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Tree_Sparrow_August_2007_Osaka_Japan.jpg/250px-Tree_Sparrow_August_2007_Osaka_Japan.jpg',
-
-      // },
-      // {
-      //   index: 2,
-      //   title: 'Test2',
-      //   content: 'Test2 Content......',
-      //   src: 'http://www.sommeliertimes.com/news/photo/202004/16209_34705_726.jpg',
-      // },
-      // {
-      //   index: 3,
-      //   title: 'Test3',
-      //   content: 'Test3 Content',
-      //   src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Tree_Sparrow_August_2007_Osaka_Japan.jpg/250px-Tree_Sparrow_August_2007_Osaka_Japan.jpg',
-      // }
-      index: 0,
-      title: '공지',
-      content: '중요',
-      src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Tree_Sparrow_August_2007_Osaka_Japan.jpg/250px-Tree_Sparrow_August_2007_Osaka_Japan.jpg',
 
 
     }, ],
@@ -80,12 +58,11 @@ export default new Vuex.Store({
     createPost: (state, payload) => {
 
       state.posts.push(payload)
-
-
     },
     deletePost: (state, payload) => {
 
-      state.posts.splice(([payload] - 1), 1);
+      state.posts.splice((payload) - 1, 1);
+
 
 
     },
