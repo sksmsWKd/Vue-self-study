@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container mt-3>
-      <h1>postlist</h1>
+      <h1>pass</h1>
       <br /><br />
       <v-layout row>
         <v-flex ml-5 mr-5>
@@ -135,7 +135,7 @@ export default {
       content: null,
       src: null,
       ccontent: null,
-      index: 1,
+      index: 0,
     };
   },
   computed: {
@@ -155,7 +155,6 @@ export default {
     },
     destroy: function (post) {
       this.$store.commit("deletePost", post);
-      state.index -= 1;
     },
     commentSave() {
       let comments = {
