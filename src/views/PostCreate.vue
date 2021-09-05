@@ -21,7 +21,7 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      index: 1,
+      index: 0,
       title: null,
       content: null,
       src: null,
